@@ -22,8 +22,8 @@ import joblib
 
 from src.data_preprocessing import preprocess_pipeline
 
-# Style matplotlib
-plt.style.use('seaborn-v0_8-whitegrid')
+# Style matplotlib / seaborn
+sns.set_theme(style='whitegrid')
 
 
 def evaluate_model(
