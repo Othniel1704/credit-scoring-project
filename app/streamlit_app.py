@@ -499,7 +499,7 @@ with tab3:
 
     ### 👤 Auteur
 
-    **Cedric Adannou**
+    **Kouakou Konan**
 
     - 🔗 [GitHub](https://github.com/Othniel1704)
 
@@ -512,7 +512,7 @@ with tab3:
 st.markdown("---")
 st.markdown(
     "<div style='text-align: center; color: #636e72; font-size: 0.85rem;'>"
-    "🏦 Credit Scoring — Développé par Cedric Adannou — "
+    "🏦 Credit Scoring — Développé par Kouakou Konan — "
     "<a href='https://github.com/Othniel1704' style='color: #74b9ff;'>GitHub</a>"
     "</div>",
     unsafe_allow_html=True

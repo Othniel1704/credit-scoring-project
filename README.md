@@ -177,7 +177,7 @@ credit-scoring-project/
 
 ## 🤝 Auteur
 
-**Cedric Adannou**
+**Kouakou Konan**
 
 - 🔗 GitHub : [@Othniel1704](https://github.com/Othniel1704)
 
