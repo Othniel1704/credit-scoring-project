@@ -167,21 +167,38 @@ st.markdown("""
 # ─────────────────────────────────────────────────────
 # CHARGEMENT DU MODÈLE
 # ─────────────────────────────────────────────────────
+def get_model_paths():
+    """Recherche les chemins des fichiers modèle dans plusieurs emplacements possibles."""
+    possible_base_dirs = [
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        os.getcwd(),
+        os.path.join(os.getcwd(), ".."),
+    ]
+    for bdir in possible_base_dirs:
+        m_path = os.path.abspath(os.path.join(bdir, "models", "logistic_model.pkl"))
+        s_path = os.path.abspath(os.path.join(bdir, "models", "scaler.pkl"))
+        f_path = os.path.abspath(os.path.join(bdir, "models", "feature_names.pkl"))
+        if os.path.exists(m_path) and os.path.exists(s_path):
+            return m_path, s_path, f_path
+    return None, None, None
+
 @st.cache_resource
-def load_model():
-    """Charge le modèle et le scaler depuis les fichiers .pkl."""
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    model_path = os.path.join(base_dir, "models", "logistic_model.pkl")
-    scaler_path = os.path.join(base_dir, "models", "scaler.pkl")
-    features_path = os.path.join(base_dir, "models", "feature_names.pkl")
-
-    if not os.path.exists(model_path):
-        return None, None, None
-
+def load_model_cached(model_path, scaler_path, features_path):
+    """Charge le modèle et le scaler en mémoire."""
     model = joblib.load(model_path)
     scaler = joblib.load(scaler_path)
-    feature_names = joblib.load(features_path) if os.path.exists(features_path) else None
+    feature_names = joblib.load(features_path) if features_path and os.path.exists(features_path) else None
     return model, scaler, feature_names
+
+def load_model():
+    """Fonction principale de chargement avec résilience."""
+    m_path, s_path, f_path = get_model_paths()
+    if not m_path:
+        return None, None, None
+    try:
+        return load_model_cached(m_path, s_path, f_path)
+    except Exception as e:
+        return None, None, None
 
 
 # ─────────────────────────────────────────────────────
@@ -403,8 +420,12 @@ with tab2:
     st.markdown("## 📈 Performance du Modèle")
     st.markdown("---")
 
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    images_dir = os.path.join(base_dir, "images")
+    possible_img_dirs = [
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "images"),
+        os.path.join(os.getcwd(), "images"),
+        os.path.join(os.getcwd(), "..", "images")
+    ]
+    images_dir = next((d for d in possible_img_dirs if os.path.exists(d)), possible_img_dirs[0])
 
     col1, col2 = st.columns(2)
 
