@@ -28,22 +28,22 @@ Le modèle de **régression logistique** a été entraîné sur le dataset [Give
 
 | Métrique | Valeur |
 |---|---|
-| **AUC-ROC** | ~0.80 |
+| **AUC-ROC** | **0.854** |
 | **Observations** | 150 000 |
 | **Variables** | 10 features financières |
 | **Gestion du déséquilibre** | `class_weight='balanced'` |
 
 ### Classes de risque
 
-Le modèle segmente les emprunteurs en **3 classes de risque** :
+Le modèle segmente les emprunteurs en **3 classes de risque** (terciles) :
 
-| Classe | Taux de défaut | Interprétation |
-|---|---|---|
-| 🟢 **Faible** | ~1-2% | Emprunteurs fiables |
-| 🟠 **Moyen** | ~4-6% | Surveillance recommandée |
-| 🔴 **Élevé** | ~14-18% | Risque significatif — examen approfondi |
+| Classe | Emprunteurs | Défauts réels | Taux de défaut | Interprétation |
+|---|---|---|---|---|
+| 🟢 **Faible** | 15 000 | 117 | **0.78%** | Emprunteurs très fiables |
+| 🟠 **Moyen** | 15 000 | 397 | **2.65%** | Surveillance standard |
+| 🔴 **Élevé** | 15 000 | 2 494 | **16.63%** | Examen manuel obligatoire |
 
-> La classe "Élevé" concentre environ **75-80% de tous les défauts** du portefeuille testé.
+> 🎯 **Impact métier** : La classe "Élevé" concentre **82.9% de tous les défauts** du portefeuille de test (2 494 défauts sur 3 008).
 
 ---
 
