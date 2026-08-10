@@ -1,0 +1,41 @@
+# ─── Données (trop volumineuses pour Git) ───
+*.csv
+data/*.csv
+
+# ─── Modèles sérialisés (générés par l'entraînement) ───
+models/*.pkl
+
+# ─── Python ───
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ─── Jupyter Notebook ───
+.ipynb_checkpoints/
+
+# ─── Environnement virtuel ───
+venv/
+.venv/
+env/
+ENV/
+
+# ─── IDE ───
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── OS ───
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Divers ───
+.env
+*.log
