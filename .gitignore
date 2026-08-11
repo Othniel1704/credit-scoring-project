@@ -3,7 +3,9 @@
 data/*.csv
 
 # ─── Modèles sérialisés (générés par l'entraînement) ───
-models/*.pkl
+# Les gros fichiers de test sont ignorés, mais les petits modèles pour Streamlit Cloud sont inclus
+models/X_test_scaled.pkl
+models/y_test.pkl
 
 # ─── Python ───
 __pycache__/
